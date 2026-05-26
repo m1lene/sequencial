@@ -1,0 +1,33 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
+ENTITY cont15 IS 
+	PORT (clk,rst  : IN std_logic;
+			contD    : OUT unsigned(1 DOWNTO 0);
+			contU    : OUT unsigned(3 DOWNTO 0);
+			timer_15 : OUT std_logic);
+END ENTITY;
+
+ARCHITECTURE comportamento OF cont15 IS 
+BEGIN 
+	PROCESS (clk,rst)
+		VARIABLE cont10 : unsigned(1 DOWNTO 0) := (OTHERS => '0');
+		VARIABLE cont1  : unsigned(3 DOWNTO 0) := (OTHERS => '0');
+		VARIABLE status : std_logic := '0';
+	BEGIN
+		IF rst = '0' THEN 
+			cont10 := (OTHERS => '0');
+			cont1  := (OTHERS => '0');
+			status := '0';
+		ELSIF clk'EVENT AND clk = '1' THEN
+			cont1	 := cont1 + 1;
+			IF  cont1 = 10 THEN 
+				cont1  := (OTHERS => '0');
+				cont10 := cont10 + 1;
+			ELSIF cont10 = 1 AND cont1 = 5 THEN
+				cont10 := (OTHERS => '0');
+				cont1  := (OTHERS => '0');
+				END IF;
+				IF cont10 = 1 AND cont1 = 4 THEN
+					status := '1';
