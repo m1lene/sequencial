@@ -11,11 +11,15 @@ END ENTITY;
 
 ARCHITECTURE comportamento OF cont30 IS
 BEGIN 
+-- Processo sensível ao clock e ao reset (lógica sequencial)
 	PROCESS (clk, rst)
+-- Variáveis locais: são atualizadas instantaneamente dentro do processo
 		VARIABLE cont10 : unsigned(1 DOWNTO 0) := (OTHERS => '0');
 		VARIABLE cont1  : unsigned(3 DOWNTO 0) := (OTHERS => '0');
 		VARIABLE status : std_logic := '0';
 	BEGIN
+  -- Reset assíncrono ativo em nível baixo (rst = '0'):
+        -- zera todos os contadores e o status
 		IF rst = '0' THEN
 			cont10 := (OTHERS => '0');
 			cont1  := (OTHERS => '0');
