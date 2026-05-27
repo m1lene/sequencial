@@ -31,3 +31,12 @@ BEGIN
 				END IF;
 				IF cont10 = 1 AND cont1 = 4 THEN
 					status := '1';
+				ELSE
+					status := '0';
+				END IF;
+			END IF;
+			contD		<=cont10;
+			contU		<=cont1;
+			timer_15	<=	status;
+   END PROCESS;
+END ARCHITECTURE;
